@@ -12,8 +12,11 @@
     "keywords": ["relative","path","realpath"],
     "autoload": {
         "psr-4": {
-            "SystemUtil\\": "src"
-        }
+            "SystemUtil\\": "src/SystemUtil"
+        },
+        "files": [
+        
+        ]
     },
     "autoload-dev": {
         "files": [
