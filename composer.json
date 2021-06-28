@@ -1,0 +1,37 @@
+{
+    "name": "takuya/php-relative-path",
+    "description": "calculate relative path to path",
+    "type": "library",
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "takuya",
+            "email": "takuya.1st+nospam@gmail.com"
+        }
+    ],
+    "keywords": ["relative","path","realpath"],
+    "autoload": {
+        "psr-4": {
+            "SystemUtil\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "files": [
+            "misc/Helpers/helpers.php"
+        ],
+        "psr-4": {
+            "Tests\\": "tests"
+        }
+    },
+    "minimum-stability": "dev",
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "takuya/process": "dev-master",
+        "ext-json": "*"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    }
+}
