@@ -15,7 +15,7 @@
             "SystemUtil\\": "src/SystemUtil"
         },
         "files": [
-        
+            "src/helers/relative_path.php"
         ]
     },
     "autoload-dev": {
