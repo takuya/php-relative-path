@@ -10,6 +10,27 @@ This package make you get a relative path to a target.
 
 This package intended to  same to GNU coreuitls `realpath --relative-to`.
 
+## Installing from github.
+``
+composer config repositories.takuya/php-relative-path vcs https://github.com/takuya/php-relative-path
+composer config minimum-stability dev
+composer require takuya/php-relative-path
+``
+## Installing from packaginst. ( not yet  )
+``sh
+composer install takuya/php-relative-path
+``
+## Usage example.
+This package will add a function `relative_path()`  to your composer project. 
+```php
+<?php
+
+require_once 'vendor/autoload.php';
+$ret = relative_path('/usr/bin/env', '/usr/bin/bash');
+var_dump($ret);
+```
+
+
 ## run tests 
 ```
 composer install
