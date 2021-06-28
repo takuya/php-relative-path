@@ -2,11 +2,18 @@
 
 namespace SystemUtil;
 
-
+/**
+ * Class RelativePath
+ * @package SystemUtil
+ * @author  takuya
+ * @link  https://github.com/takuya/php-relative-path
+ * @license GNU LGPL, Attribution required for commercial implementations, requested for everything else.
+ * @since  2021-06-29
+ */
 
 class RelativePath {
   
-  protected static function remove_relative_in_middle($path){
+  protected static function remove_relative_in_middle($path):string{
     $result = [];
     $sep = '/';
 
@@ -25,7 +32,7 @@ class RelativePath {
     $result = preg_replace("|^/{$sep}|", $sep, $result);
     return $result;
   }
-  protected static function dirname($path){
+  protected static function dirname($path):string {
     // dump($path);
     $s = '/';
     $path = preg_replace("|{$s}$|", '', $path);
@@ -47,8 +54,12 @@ class RelativePath {
     return $str_intersects;
     
   }
-  
-  public static function getRelativePath( $path, $relative_to){
+  /**
+   * @param $path string target path.
+   * @param $relative_to string relative path from.
+   * @return string relative path.
+   */
+  public static function getRelativePath( $path, $relative_to):string {
     $rel = null;
     
     $path = self::remove_relative_in_middle($path);
