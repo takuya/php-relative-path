@@ -12,12 +12,14 @@ This package intended to  same to GNU coreuitls `realpath --relative-to`.
 
 ## Installing from github.
 ```
+
 composer config repositories.takuya/php-relative-path vcs https://github.com/takuya/php-relative-path
 composer config minimum-stability dev
 composer require takuya/php-relative-path
 ```
-## Installing from packaginst. ( not yet  )
+## Installing from packagist. ( not yet  )
 ```sh
+
 composer install takuya/php-relative-path
 ````
 ## Usage example.
