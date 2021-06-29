@@ -78,5 +78,10 @@
         "/usr/local/bin/",
         "/usr/bin/bash",
         "../../bin/bash"
+    ],
+    [
+        "/usr/bin/bash",
+        "/Users/takuya",
+        "../../../Users/takuya"
     ]
 ]

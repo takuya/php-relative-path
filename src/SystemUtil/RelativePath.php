@@ -43,10 +43,10 @@ class RelativePath {
     return join($s, $path);
   }
   protected static function getStringIntersects($strA, $strB){
-    $max = (strlen($strA)>=strlen($strB) )?strlen($strA):strlen($strA);
+    $max = (strlen($strA)>=strlen($strB) )?strlen($strA):strlen($strB);
     $str_intersects = '';
-    for ($i=0;$i<$max;$i++ ){
-      if ( substr($strA,$i,1) == substr($strB,$i,1)){
+    for ($i=0,$a=true;$i<$max;$i++ ){
+      if ( $a = substr($strA,$i,1) == substr($strB,$i,1) && $a ){
         $str_intersects=substr($strA,0,$i+1);
         continue;
       }

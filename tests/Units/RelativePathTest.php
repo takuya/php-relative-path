@@ -57,6 +57,7 @@ class RelativePathTest extends TestCase {
         ['/usr/local/bin', '/'],
         ['/usr/local/bin/', '/usr/bin/php'],
         ['/usr/local/bin/', '/usr/bin/bash'],
+        ['/usr/bin/bash', '/Users/takuya']
       ];
       $patterns = [];
       foreach ($relative_pattern as $pattern) {
