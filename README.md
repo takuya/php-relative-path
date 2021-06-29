@@ -19,10 +19,10 @@ composer config repositories.takuya/php-relative-path vcs https://github.com/tak
 composer config minimum-stability dev
 composer require takuya/php-relative-path
 ```
-## Installing from packagist. ( not yet  )
+## Installing from packagist.
 ```sh
-
-composer install takuya/php-relative-path
+composer require takuya/php-relative-path
+composer install
 ````
 ## Usage example.
 This package will add a function `relative_path()`  to your composer project. 
