@@ -83,8 +83,7 @@ jobs:
       - run:
           shell: /bin/bash
           command: |
-            cd ~/project  &&
-            composer install -n --prefer-dist &&
-            /usr/local/bin/php ./vendor/bin/phpunit --testsuite Units &&
-            echo done;
+            cd /var/www/project &&
+            sudo -u www-data php ./vendor/bin/phpunit --testsuite Units &&
+            echo end;
 
