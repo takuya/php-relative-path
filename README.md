@@ -2,6 +2,8 @@
 
 Calculate a relative path to path 
 
+![<CircleciTest>](https://circleci.com/gh/takuya/php-relative-path.svg?style=svg)
+
 ## Get the Relative path.
 
 This package make you get a relative path to a target.
