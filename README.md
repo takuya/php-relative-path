@@ -25,7 +25,7 @@ composer require takuya/php-relative-path
 composer install
 ````
 ## Usage example.
-This package will add a function `relative_path()`  to your composer project. 
+This package provides a function `relative_path()`  to your composer project. 
 ```php
 <?php
 
