@@ -47,12 +47,13 @@ class RelativePath {
     $str_intersects = '';
     for ($i=0,$a=true;$i<$max;$i++ ){
       if ( $a = substr($strA,$i,1) == substr($strB,$i,1) && $a ){
-        $str_intersects=substr($strA,0,$i+1);
+        $str_intersects =substr($strA,0,$i+1);
+        $pos = strrpos($str_intersects, '/');
+        $str_intersects = $pos ? substr($strA,0,$pos) : $str_intersects ;
         continue;
       }
     }
     return $str_intersects;
-    
   }
   /**
    * @param $path string target path.

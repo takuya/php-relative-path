@@ -76,6 +76,12 @@ class RelativePathTest extends TestCase {
   
   
   }
+  public function testSameStringInDirName(){
+    $src = '/tmp/sample-before';
+    $dst = '/tmp/sample-after';
+    $rel = RelativePath::getRelativePath($src,$dst);
+    $this->assertEquals('../sample-before', $rel);
+  }
   
   public function testRealPathCommand(){
     
@@ -84,7 +90,7 @@ class RelativePathTest extends TestCase {
     // for ($idx=0;$idx<sizeof($this->patterns);$idx++){
       $pattern = $this->patterns[$idx];
       printf("\nTest No.%02d : %20s relative-to %-20s is %-20s", $idx+1, $pattern[1],$pattern[0],$pattern[2]);
-      
+      //
       $rel = RelativePath::getRelativePath($pattern[1],$pattern[0]);
       $this->assertEquals($pattern[2], $rel);
       

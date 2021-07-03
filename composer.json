@@ -9,7 +9,7 @@
             "email": "takuya.1st+nospam@gmail.com"
         }
     ],
-    "version": "1.0.1",
+    "version": "1.0.2",
     "keywords": ["relative","path","realpath"],
     "autoload": {
         "psr-4": {
