@@ -30,8 +30,18 @@ This package provides a function `relative_path()`  to your composer project.
 <?php
 
 require_once 'vendor/autoload.php';
-$ret = relative_path('/usr/bin/env', '/usr/bin/bash');
-var_dump($ret);
+$ret = relative_path('/etc/nginx/sites-available', '/etc/nginx/sites-enabled');
+var_dump($ret);#=>'../sites-available'
+```
+### example:02 file path 
+```php
+<?php
+
+require_once 'vendor/autoload.php';
+$from = '/etc/nginx/sites-available/example.com';
+$to   = '/etc/nginx/sites-enabled/example.com';
+$ret = relative_path( dirname($from),  dirname($to));
+var_dump($ret.DIRECTORY_SEPARATOR.basename($from));#=>'../sites-available/example.com'
 ```
 
 

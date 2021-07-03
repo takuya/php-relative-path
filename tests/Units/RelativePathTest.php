@@ -57,7 +57,9 @@ class RelativePathTest extends TestCase {
         ['/usr/local/bin', '/'],
         ['/usr/local/bin/', '/usr/bin/php'],
         ['/usr/local/bin/', '/usr/bin/bash'],
-        ['/usr/bin/bash', '/Users/takuya']
+        ['/usr/bin/bash', '/Users/takuya'],
+        ['/tmp/sample-app', '/tmp/sample-bap'],
+        ['/Users/takuya-spare', '/Users/takuya'],
       ];
       $patterns = [];
       foreach ($relative_pattern as $pattern) {
@@ -77,10 +79,10 @@ class RelativePathTest extends TestCase {
   
   }
   public function testSameStringInDirName(){
-    $src = '/tmp/sample-before';
-    $dst = '/tmp/sample-after';
-    $rel = RelativePath::getRelativePath($src,$dst);
-    $this->assertEquals('../sample-before', $rel);
+    $from = '/etc/nginx/sites-available';
+    $to = '/etc/nginx/sites-enabled';
+    $rel = RelativePath::getRelativePath($from,$to);
+    $this->assertEquals('../sites-available', $rel);
   }
   
   public function testRealPathCommand(){

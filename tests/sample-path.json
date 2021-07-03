@@ -83,5 +83,15 @@
         "/usr/bin/bash",
         "/Users/takuya",
         "../../../Users/takuya"
+    ],
+    [
+        "/tmp/sample-app",
+        "/tmp/sample-bap",
+        "../sample-bap"
+    ],
+    [
+        "/Users/takuya-spare",
+        "/Users/takuya",
+        "../takuya"
     ]
 ]
