@@ -1,0 +1,28 @@
+name: main
+
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: '9 */11 * * *'
+jobs:
+  run-composer-install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: installation
+        shell: bash
+        run: |
+          php -v
+          composer require takuya/php-relative-path
+          composer install
+          cat <<'EOS' > sample.php
+          <?php
+          require_once 'vendor/autoload.php';
+          $from = '/etc/nginx/sites-available';
+          $to   = '/etc/nginx/sites-enabled';
+          $ret = relative_path( $from,  $to);
+          var_dump([$from,$to,$ret],[$ret=='../sites-available']); #=>'../sites-available'
+          EOS
+          cat sample.php
+          php sample.php

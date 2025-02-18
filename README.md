@@ -2,7 +2,9 @@
 
 Calculate a relative path to path 
 
-![<CircleciTest>](https://circleci.com/gh/takuya/php-relative-path.svg?style=svg)
+[![phpunit](https://github.com/takuya/php-relative-path/actions/workflows/actions.yml/badge.svg)](https://github.com/takuya/php-relative-path/actions/workflows/actions.yml)
+[![composer](https://github.com/takuya/php-relative-path/actions/workflows/composer.yml/badge.svg)](https://github.com/takuya/php-relative-path/actions/workflows/composer.yml)
+
 
 ## Get the Relative path.
 
