@@ -2,12 +2,12 @@
 
 namespace Tests\Units;
 
+use Takuya\ProcOpen\ProcOpen;
 use Tests\TestCase;
-use SystemUtil\Process;
 use SystemUtil\RelativePath;
 use function PHPUnit\Framework\assertGreaterThanOrEqual;
 
-class RelativePathTest extends TestCase {
+class   RelativePathTest extends TestCase {
   
   /**
    * @var string[]
@@ -22,12 +22,12 @@ class RelativePathTest extends TestCase {
     $this->generate_testpattern();
   }
   protected function checkRealpathExists(){
-    $proc = new Process('which realpath');
+    $proc = new ProcOpen(['which','realpath']);
     $proc->run();
-    if (!$proc->isSuccessful()){
+    if ($proc->info->exitcode){
       throw new \RuntimeException('sudo apt install realpath / brew install realpath');
     }
-    $proc = new Process('realpath --help ');
+    $proc = new ProcOpen(['realpath','--help']);
     $proc->run();
     if (! preg_match('/GNU/', $proc->getOutput())){
       throw new \RuntimeException('Please install in PATH  "GNU realpath" of gnu coreutils ');
@@ -63,7 +63,7 @@ class RelativePathTest extends TestCase {
       ];
       $patterns = [];
       foreach ($relative_pattern as $pattern) {
-        $proc = new Process("realpath --relative-to=${pattern[0]} ${pattern[1]}");
+        $proc = new ProcOpen("realpath --relative-to=${pattern[0]} ${pattern[1]}");
         $proc->run();
         $patterns[]=[$pattern[0], $pattern[1],trim($proc->getOutput())];
       }

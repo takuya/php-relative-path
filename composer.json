@@ -29,9 +29,10 @@
     },
     "minimum-stability": "dev",
     "require-dev": {
+        "ext-json": "*",
         "phpunit/phpunit": "^9.5",
-        "takuya/process": "dev-master",
-        "ext-json": "*"
+        "takuya/php-proc_open-wrapper": "dev-master",
+        "takuya/process": "dev-master"
     },
     "config": {
         "optimize-autoloader": true,
