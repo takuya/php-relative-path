@@ -3,7 +3,7 @@ name: composer
 on:
   push:
     branches:
-      - master
+      - main
   schedule:
     - cron: '9 */11 * * *'
 jobs:
