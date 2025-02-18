@@ -71,8 +71,8 @@
     ],
     [
         "/usr/local/bin/",
-        "/usr/bin/php",
-        "../../bin/php"
+        "/usr/bin/php8",
+        "../../bin/php8"
     ],
     [
         "/usr/local/bin/",
@@ -81,8 +81,8 @@
     ],
     [
         "/usr/bin/bash",
-        "/Users/takuya",
-        "../../../Users/takuya"
+        "/usr/local/sbin",
+        "../../local/sbin"
     ],
     [
         "/tmp/sample-app",
@@ -90,8 +90,8 @@
         "../sample-bap"
     ],
     [
-        "/Users/takuya-spare",
-        "/Users/takuya",
-        "../takuya"
+        "/etc/ssh/sshd_config",
+        "/etc/ssh/ssh_config",
+        "../ssh_config"
     ]
 ]

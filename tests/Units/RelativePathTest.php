@@ -55,11 +55,11 @@ class RelativePathTest extends TestCase {
         ['/usr/local/bin/', '/usr/'],
         ['/usr/local/bin/', '/usr'],
         ['/usr/local/bin', '/'],
-        ['/usr/local/bin/', '/usr/bin/php'],
+        ['/usr/local/bin/', '/usr/bin/php8'],
         ['/usr/local/bin/', '/usr/bin/bash'],
-        ['/usr/bin/bash', '/Users/takuya'],
+        ['/usr/bin/bash', '/usr/local/sbin'],
         ['/tmp/sample-app', '/tmp/sample-bap'],
-        ['/Users/takuya-spare', '/Users/takuya'],
+        ['/etc/ssh/sshd_config', '/etc/ssh/ssh_config'],
       ];
       $patterns = [];
       foreach ($relative_pattern as $pattern) {
