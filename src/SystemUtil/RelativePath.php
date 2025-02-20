@@ -48,8 +48,6 @@ class RelativePath {
     for ($i=0,$a=true;$i<$max;$i++ ){
       if ( $a = substr($strA,$i,1) == substr($strB,$i,1) && $a ){
         $str_intersects =substr($strA,0,$i+1);
-        $pos = strrpos($str_intersects, '/');
-        $str_intersects = $pos ? substr($strA,0,$pos) : $str_intersects ;
         continue;
       }
     }
@@ -60,16 +58,18 @@ class RelativePath {
    * @param $relative_to string relative path from.
    * @return string relative path.
    */
-  public static function getRelativePath( $path, $relative_to):string {
-    $rel = null;
-    
+  public static function getRelativePath( $path, $relative_to,$gnu_realpath_compat=true):string {
     $path = self::remove_relative_in_middle($path);
     $relative_to = self::remove_relative_in_middle($relative_to);
   
-    $intersects = self::getStringIntersects($path, $relative_to);
-    $path = array_filter(preg_split('%/%',preg_replace("|^$intersects|",'',$path)));
-    $relative_to = array_filter(preg_split('%/%', preg_replace("|^$intersects|", '', $relative_to)));
+    $str_intersects = self::getStringIntersects($path, $relative_to);
+    if ($gnu_realpath_compat){
+      $pos = strrpos($str_intersects, '/');
+      $str_intersects = $pos ? substr($path,0,$pos) : $str_intersects ;
+    }
   
+    $path = array_filter(preg_split('%/%',preg_replace("|^$str_intersects|",'',$path)));
+    $relative_to = array_filter(preg_split('%/%', preg_replace("|^$str_intersects|", '', $relative_to)));
     $rel = array_merge(array_fill(0, sizeof($relative_to), '..'), $path);
     $rel = join('/',$rel);
     return $rel;
