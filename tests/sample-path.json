@@ -88,10 +88,5 @@
         "/tmp/sample-app",
         "/tmp/sample-bap",
         "../sample-bap"
-    ],
-    [
-        "/etc/ssh/sshd_config",
-        "/etc/ssh/ssh_config",
-        "../ssh_config"
     ]
 ]

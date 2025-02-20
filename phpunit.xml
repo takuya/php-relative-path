@@ -9,11 +9,9 @@
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
-         processIsolation="true"
+         processIsolation="false"
          stopOnFailure="false"
          bootstrap="vendor/autoload.php"
-
-
 
 >
     <php>
@@ -28,13 +26,5 @@
         <testsuite name="Samples">
             <directory suffix="Test.php">./tests/Samples</directory>
         </testsuite>
-
-        <!--        <testsuite name="Features">-->
-        <!--            <directory suffix="Test.php">./tests/Features</directory>-->
-        <!--        </testsuite>-->
-
-        <!--        <testsuite name="SampleCode">-->
-        <!--            <directory suffix="Test.php">./tests/SampleCode</directory>-->
-        <!--        </testsuite>-->
     </testsuites>
 </phpunit>

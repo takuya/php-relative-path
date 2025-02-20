@@ -10,9 +10,14 @@ Calculate a relative path to path
 
 This package make you get a relative path to a target.
 
-## Equivalent to GNU realpath 
+## Equivalent to GNU realpath (Directory to Dir)
 
-This package intended to  same to GNU coreuitls `realpath --relative-to`.
+This package intended to  same to GNU coreuitls `realpath --relative-to=DIR`.
+
+`realpath` option `--relative-to=DIR` is supposed to be Relative `DIR` to `DIR`.
+
+This package is same to GNU realpath, to calc `DIR to DIR `, not `FILE to FILE`.
+
 
 ## Installing from github.
 ```
@@ -46,6 +51,21 @@ $ret = relative_path( dirname($from),  dirname($to));
 var_dump($ret.DIRECTORY_SEPARATOR.basename($from));#=>'../sites-available/example.com'
 ```
 
+Notice : `relative_path` expects DIR. 
+
+## symlink( relative )
+
+`symlink_relative` function is available.
+
+```php
+<?php
+require_once 'vendor/autoload.php';
+$real = '/etc/nginx/sites-available/example.com';
+$link  = '/etc/nginx/sites-enabled/example.com';
+symlink_relative($link,$real);
+```
+
+Relative path is mainly used in symbolic link. so shortcut helper function is provided.
 
 ## run tests 
 ```
@@ -75,3 +95,12 @@ Test No.15 :         /usr/bin/php relative-to /usr/local/bin/      is ../../bin/
 Test No.16 :        /usr/bin/bash relative-to /usr/local/bin/      is ../../bin/bash
 
 ```
+You will have doubts about `../../bin/bash` and `/../../php` .
+
+You may shout loud complaint `This package is no use.` But that is bad, Result is correct, intended to be DIR.
+
+`/usr/bin/bash relative-to /usr/local/bin/  is ../../bin/bash` is correct. `DIR to DIR` relative path.
+
+In precisely `/usr/bin/bash` is interpreted as DIR(`/usr/bin/bash/`), and relative path is `../../bin/bash/`.
+
+if you want to create relative symlink use helper function `symlink_relative`.

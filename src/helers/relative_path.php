@@ -13,11 +13,11 @@ use SystemUtil\RelativePath;
 
 if ( !function_exists('relative_path')){
   /**
-   * @param $path string target path ( symlink target ).
-   * @param $symlink_from string relative path from ( file symlink, relative_to ).
+   * @param $target_dir string target path ( symlink target ).
+   * @param $symlink_from_dir string relative path from ( --relative_to=DIR ).
    * @return string relative path.
    */
-  function relative_path(string $path, string $symlink_from ):string {
-    return RelativePath::getRelativePath($path,$symlink_from);
+  function relative_path( string $target_dir, string $symlink_from_dir ):string {
+    return RelativePath::getRelativePath($target_dir, $symlink_from_dir);
   }
 }

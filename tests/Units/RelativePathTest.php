@@ -5,9 +5,8 @@ namespace Tests\Units;
 use Takuya\ProcOpen\ProcOpen;
 use Tests\TestCase;
 use SystemUtil\RelativePath;
-use function PHPUnit\Framework\assertGreaterThanOrEqual;
 
-class   RelativePathTest extends TestCase {
+class RelativePathTest extends TestCase {
   
   /**
    * @var string[]
@@ -21,15 +20,16 @@ class   RelativePathTest extends TestCase {
     $this->checkRealpathExists();
     $this->generate_testpattern();
   }
-  protected function checkRealpathExists(){
-    $proc = new ProcOpen(['which','realpath']);
+  
+  protected function checkRealpathExists() {
+    $proc = new ProcOpen(['which', 'realpath']);
     $proc->run();
-    if ($proc->info->exitcode){
+    if( $proc->info->exitcode ) {
       throw new \RuntimeException('sudo apt install realpath / brew install realpath');
     }
-    $proc = new ProcOpen(['realpath','--help']);
+    $proc = new ProcOpen(['realpath', '--help']);
     $proc->run();
-    if (! preg_match('/GNU/', $proc->getOutput())){
+    if( ! preg_match('/GNU/', $proc->getOutput()) ) {
       throw new \RuntimeException('Please install in PATH  "GNU realpath" of gnu coreutils ');
     }
   }
@@ -37,18 +37,19 @@ class   RelativePathTest extends TestCase {
   /**
    * generate test patter use realpath GNU extended.
    */
-  protected function generate_testpattern(){
+  protected function generate_testpattern() {
     $sample = __DIR__.'/../sample-path.json';
-    if ( !file_exists( $sample )){
+    if( ! file_exists($sample) ) {
+      // --relative-to=DIR
       $relative_pattern = [
-        ['./tests','./tests/Units'],
-        ['./tests','tests/Units'],
-        ['tests','./tests/Units'],
-        ['tests','tests/Units'],
-        ['./tests/Units','./tests'],
-        ['./tests/Units','tests'],
-        ['tests/Units','./tests'],
-        ['tests/Units','tests'],
+        ['./tests', './tests/Units'],
+        ['./tests', 'tests/Units'],
+        ['tests', './tests/Units'],
+        ['tests', 'tests/Units'],
+        ['./tests/Units', './tests'],
+        ['./tests/Units', 'tests'],
+        ['tests/Units', './tests'],
+        ['tests/Units', 'tests'],
         ['/usr/local/bin', '/usr/bin/bash'],
         ['/usr/local/bin/', '/usr/bin/bash'],
         ['/usr/local/bin/', '/usr/bin'],
@@ -59,45 +60,38 @@ class   RelativePathTest extends TestCase {
         ['/usr/local/bin/', '/usr/bin/bash'],
         ['/usr/bin/bash', '/usr/local/sbin'],
         ['/tmp/sample-app', '/tmp/sample-bap'],
-        ['/etc/ssh/sshd_config', '/etc/ssh/ssh_config'],
       ];
       $patterns = [];
       foreach ($relative_pattern as $pattern) {
-        $proc = new ProcOpen("realpath --relative-to=${pattern[0]} ${pattern[1]}");
+        $proc = new ProcOpen("realpath --relative-to={$pattern[0]} ${pattern[1]}");
         $proc->run();
-        $patterns[]=[$pattern[0], $pattern[1],trim($proc->getOutput())];
+        $patterns[] = [$pattern[0], $pattern[1], trim($proc->getOutput())];
       }
       echo PHP_EOL;
-      echo     $str = json_encode($patterns, JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
-      file_put_contents($sample,$str);
+      echo $str = json_encode($patterns, JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
+      file_put_contents($sample, $str);
     }
-    
-    
     $str = file_get_contents($sample);
-    $this->patterns=json_decode($str);
-  
-  
+    $this->patterns = json_decode($str);
   }
-  public function testSameStringInDirName(){
+  
+  public function testSameStringInDirName() {
     $from = '/etc/nginx/sites-available';
     $to = '/etc/nginx/sites-enabled';
-    $rel = RelativePath::getRelativePath($from,$to);
+    $rel = RelativePath::getRelativePath($from, $to);
     $this->assertEquals('../sites-available', $rel);
   }
   
-  public function testRealPathCommand(){
+  public function testRealPathCommand() {
     
-    // for ($idx=13;$idx<sizeof($this->patterns);$idx++){
     foreach ($this->patterns as $idx => $pattern) {
-    // for ($idx=0;$idx<sizeof($this->patterns);$idx++){
-      $pattern = $this->patterns[$idx];
-      printf("\nTest No.%02d : %20s relative-to %-20s is %-20s", $idx+1, $pattern[1],$pattern[0],$pattern[2]);
-      //
-      $rel = RelativePath::getRelativePath($pattern[1],$pattern[0]);
-      $this->assertEquals($pattern[2], $rel);
       
+      $pattern = $this->patterns[$idx];
+      printf("\nTest No.%02d : %20s relative-to %-20s is %-20s", $idx + 1, $pattern[1], $pattern[0], $pattern[2]);
+      //
+      $rel = RelativePath::getRelativePath($pattern[1], $pattern[0]);
+      $this->assertEquals($pattern[2], $rel);
     }
-    // foreach ($this->patterns as $idx => $pattern) {
-    // }
+    printf("\r\n");
   }
 }
